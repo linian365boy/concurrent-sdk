@@ -18,7 +18,8 @@ public class PropertiesUtils {
 	public static void initProperties(){
 		prop = new Properties();
 		try {
-			prop.load(PropertiesUtils.class.getResourceAsStream(fileName+".properties"));
+			prop.load(PropertiesUtils.class.getClassLoader().getResourceAsStream(fileName+".properties"));
+			logger.debug("load prop value|{}",prop);
 		} catch (IOException e) {
 			logger.error("加载{}文件出错:{}",fileName,e);
 		}

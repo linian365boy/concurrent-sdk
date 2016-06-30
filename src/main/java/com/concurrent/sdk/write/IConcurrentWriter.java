@@ -1,5 +1,9 @@
 package com.concurrent.sdk.write;
 
-public interface IConcurrentWriter {
+import com.concurrent.sdk.container.MemoryPage;
+
+public interface IConcurrentWriter<T> {
+
+	void write(MemoryPage<T> page);
 
 }

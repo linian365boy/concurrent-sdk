@@ -2,6 +2,7 @@ package com.concurrent.sdk.common;
 
 public class ConfigVariable {
 	private static int writeThreadSize = NumUtils.toInt(PropertiesUtils.getValue("write.thread.size"),0);
+	private static int writerSize = NumUtils.toInt(PropertiesUtils.getValue("writer.size"),0);
 	private static int memoryMaxSize = NumUtils.toInt(PropertiesUtils.getValue("memory.max.size"),0);
 	private static int memoryTimeout = NumUtils.toInt(PropertiesUtils.getValue("memory.timeout"),0);
 	
@@ -22,5 +23,11 @@ public class ConfigVariable {
 	}
 	public static void setMemoryTimeout(int memoryTimeout) {
 		ConfigVariable.memoryTimeout = memoryTimeout;
+	}
+	public static int getWriterSize() {
+		return writerSize;
+	}
+	public static void setWriterSize(int writerSize) {
+		ConfigVariable.writerSize = writerSize;
 	}
 }
