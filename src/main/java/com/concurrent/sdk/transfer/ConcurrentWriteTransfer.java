@@ -48,9 +48,10 @@ public class ConcurrentWriteTransfer<T> extends AbstractConcurrentWriteTransfer<
 	public boolean isNeedFlush(){
 		boolean flag = false;
 		//时间超时
-		int seconds = Seconds.secondsBetween(new DateTime(page.getNextFlushTime()), 
-				new DateTime()).getSeconds();
-		if(page.size()>0 && seconds<=0){
+		//加1是表示joda time不能精确到毫秒比较，最小颗粒度是秒
+		int seconds = Math.abs(Seconds.secondsBetween(new DateTime(page.getNextFlushTime()).plusSeconds(1), 
+				new DateTime()).getSeconds());
+		if(page.size()>0 && seconds==0){
 			flag = true;
 		}
 		//超过max.size
@@ -81,8 +82,10 @@ public class ConcurrentWriteTransfer<T> extends AbstractConcurrentWriteTransfer<
 				flush();
 			}
 			T data = queue.poll(100, TimeUnit.MICROSECONDS);
-			page.put(data);
-			logger.debug("memoryPage put data|{}, page size|{}",data, page.size());
+			if(data!=null){
+				page.put(data);
+				logger.info("memoryPage put data|{}, page size|{}",data, page.size());
+			}
 		} catch (InterruptedException e) {
 			logger.error("queue poll data error",e);
 		}

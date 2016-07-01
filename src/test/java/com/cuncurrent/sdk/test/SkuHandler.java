@@ -15,13 +15,11 @@ public class SkuHandler extends AbstractConcurrentWriter<Sku> {
 	public void write(MemoryPage<Sku> t) {
 		List<Sku> skuList = t.getContent();
 		if(skuList!=null && skuList.size()>0){
-			logger.debug("skuList size()==t.size, size|{}",
-					skuList.size()==t.size(),t.size());
 			for(Sku sku : skuList){
-				System.out.println(sku);
+				logger.debug("write sku info|{}", sku);
 			}
+			logger.info("write {} skuList", t.size());
 		}
-		logger.debug("writer skuList end");
 	}
 
 }

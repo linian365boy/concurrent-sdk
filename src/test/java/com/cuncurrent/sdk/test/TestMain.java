@@ -16,7 +16,7 @@ public class TestMain {
 		logger.debug("start read!");
 		reader = new SkuReader();
 		Sku sku = null;
-		for(int i=0;i<2;i++){
+		for(int i=0;i<425;i++){
 			sku = new Sku();
 			sku.setId(new Long(i));
 			sku.setName("name"+i);
@@ -25,7 +25,7 @@ public class TestMain {
 			logger.debug("read {} data",i+1);
 		}
 		try {
-			TimeUnit.SECONDS.sleep(5);
+			TimeUnit.SECONDS.sleep(7);
 			reader.stop();
 			logger.debug("write end");
 		} catch (InterruptedException e) {

@@ -6,11 +6,15 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.concurrent.sdk.common.ConfigVariable;
 import com.concurrent.sdk.transfer.AbstractConcurrentWriteTransfer;
 import com.concurrent.sdk.transfer.ConcurrentWriteTransfer;
 
 public class DefaultConcurrentReader<T> implements IConcurrentReader<T> {
+	private static final Logger logger = LoggerFactory.getLogger(DefaultConcurrentReader.class);
 	private BlockingQueue<T> queue;
 	private static ExecutorService service = Executors.newFixedThreadPool(ConfigVariable.getWriteThreadSize());
 	private static int writerSize = ConfigVariable.getWriterSize();
@@ -33,6 +37,7 @@ public class DefaultConcurrentReader<T> implements IConcurrentReader<T> {
 	@Override
 	public void read(T t) {
 		queue.add(t);
+		logger.debug("queue data|{}",queue);
 	}
 
 	@Override
