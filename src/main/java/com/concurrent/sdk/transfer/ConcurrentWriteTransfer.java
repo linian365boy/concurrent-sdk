@@ -13,6 +13,15 @@ import com.concurrent.sdk.common.PropertiesUtils;
 import com.concurrent.sdk.container.MemoryPage;
 import com.concurrent.sdk.write.IConcurrentWriter;
 
+/**
+ * @ClassName: ConcurrentWriteTransfer  
+ * @Description: 并发写的一个中间类 
+ * @date: 2016年7月1日 下午5:28:26 
+ * 
+ * @author tanfan 
+ * @version @param <T> 
+ * @since JDK 1.7
+ */
 public class ConcurrentWriteTransfer<T> extends AbstractConcurrentWriteTransfer<T> {
 	private static final Logger logger = LoggerFactory.getLogger(ConcurrentWriteTransfer.class);
 	//存放数据的队列
@@ -22,8 +31,8 @@ public class ConcurrentWriteTransfer<T> extends AbstractConcurrentWriteTransfer<
 	private MemoryPage<T> page;
 	private volatile boolean status = true;
 	private IConcurrentWriter<T> writer;
-	private int maxMemoryPageSize = ConfigVariable.getMemoryMaxSize();
-	private int timeOut = ConfigVariable.getMemoryTimeout();
+	private static int maxMemoryPageSize = ConfigVariable.getMemoryMaxSize();
+	private static int timeOut = ConfigVariable.getMemoryTimeout();
 	
 	@Override
 	public void run() {

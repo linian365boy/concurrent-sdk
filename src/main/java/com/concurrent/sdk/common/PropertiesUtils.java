@@ -6,6 +6,15 @@ import java.util.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * @ClassName: PropertiesUtils  
+ * @Description: 读取配置文件工具类 
+ * @date: 2016年7月1日 下午4:46:59 
+ * 
+ * @author tanfan 
+ * @version  
+ * @since JDK 1.7
+ */
 public class PropertiesUtils {
 	private static final Logger logger = LoggerFactory.getLogger(PropertiesUtils.class);
 	private static Properties prop = null;

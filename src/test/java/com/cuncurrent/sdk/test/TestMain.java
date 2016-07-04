@@ -16,7 +16,7 @@ public class TestMain {
 		logger.debug("start read!");
 		reader = new SkuReader();
 		Sku sku = null;
-		for(int i=0;i<425;i++){
+		for(int i=0;i<88;i++){
 			sku = new Sku();
 			sku.setId(new Long(i));
 			sku.setName("name"+i);

@@ -13,6 +13,15 @@ import com.concurrent.sdk.common.ConfigVariable;
 import com.concurrent.sdk.transfer.AbstractConcurrentWriteTransfer;
 import com.concurrent.sdk.transfer.ConcurrentWriteTransfer;
 
+/**
+ * @ClassName: DefaultConcurrentReader  
+ * @Description: 默认读入数据的类 
+ * @date: 2016年7月1日 下午5:25:37 
+ * 
+ * @author tanfan 
+ * @version @param <T> 
+ * @since JDK 1.7
+ */
 public class DefaultConcurrentReader<T> implements IConcurrentReader<T> {
 	private static final Logger logger = LoggerFactory.getLogger(DefaultConcurrentReader.class);
 	private BlockingQueue<T> queue;
