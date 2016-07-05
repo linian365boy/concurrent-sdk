@@ -8,7 +8,7 @@ import com.concurrent.sdk.read.IConcurrentReader;
 
 /**
  * @ClassName: AbstractConcurrentTemplate  
- * @Description: 默认实现读写的一个模板 
+ * @Description: 默认实现读写的一个模板 ，客户端继承该抽象类，实现自己的getReader方法即可
  * @date: 2016年7月5日 下午3:04:44 
  * 
  * @author tanfan 
@@ -37,6 +37,13 @@ public abstract class AbstractConcurrentTemplate<T> {
 		this.queueSize = queueSize;
 	}
 	
+	/**
+	 * getReader:相同的t，获取同一个reader
+	 * @author tanfan 
+	 * @param t
+	 * @return 
+	 * @since JDK 1.7
+	 */
 	public abstract IConcurrentReader<T> getReader(T t);
 	
 	public void read(T t) {
