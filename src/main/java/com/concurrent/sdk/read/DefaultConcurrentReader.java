@@ -25,13 +25,15 @@ import com.concurrent.sdk.transfer.ConcurrentWriteTransfer;
 public class DefaultConcurrentReader<T> implements IConcurrentReader<T> {
 	private static final Logger logger = LoggerFactory.getLogger(DefaultConcurrentReader.class);
 	private BlockingQueue<T> queue;
-	private static ExecutorService service = Executors.newFixedThreadPool(ConfigVariable.getWriteThreadSize());
+	private ExecutorService service;
 	private static int writerSize = ConfigVariable.getWriterSize();
 	private AbstractConcurrentWriteTransfer<T>[] transfer;
 	private Future<?>[] future;
 	
 	@SuppressWarnings("unchecked")
 	public DefaultConcurrentReader(){
+		service = Executors.newFixedThreadPool(ConfigVariable.getWriteThreadSize());
+		logger.debug("service hashcode|{}",service.hashCode());
 		queue = new LinkedBlockingQueue<>();
 		transfer = new AbstractConcurrentWriteTransfer[writerSize];
 		future = new Future[writerSize];
@@ -46,7 +48,7 @@ public class DefaultConcurrentReader<T> implements IConcurrentReader<T> {
 	@Override
 	public void read(T t) {
 		queue.add(t);
-		logger.debug("queue data|{}",queue);
+		logger.debug("t|{},queue hashCode|{}, queue size|{}",t,queue.hashCode(),queue.size());
 	}
 
 	@Override
@@ -57,6 +59,7 @@ public class DefaultConcurrentReader<T> implements IConcurrentReader<T> {
 			future[i].cancel(true);
 		}
 		if(service!=null){
+			logger.debug("stop service hashcode|{}",service.hashCode());
 			service.shutdown();
 		}
 	}

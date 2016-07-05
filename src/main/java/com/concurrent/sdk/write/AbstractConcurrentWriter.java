@@ -1,8 +1,6 @@
 package com.concurrent.sdk.write;
 
-import com.concurrent.sdk.common.IConcurrent;
 import com.concurrent.sdk.container.MemoryPage;
-import com.cuncurrent.sdk.test.Sku;
 
 /**
  * @ClassName: AbstractConcurrentWriter  
@@ -15,9 +13,4 @@ import com.cuncurrent.sdk.test.Sku;
  */
 public abstract class AbstractConcurrentWriter<T> implements IConcurrentWriter<T> {
 	public abstract void write(MemoryPage<T> page);
-	public abstract IConcurrent<T> getWriter(T t);
-	
-	public IConcurrent<Sku>[] getWriters(){
-		return null;
-	}
 }

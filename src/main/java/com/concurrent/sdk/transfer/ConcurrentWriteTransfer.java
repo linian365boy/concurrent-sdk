@@ -67,6 +67,8 @@ public class ConcurrentWriteTransfer<T> extends AbstractConcurrentWriteTransfer<
 		if(!flag && page.size() >= maxMemoryPageSize){
 			flag = true;
 		}
+		logger.debug("isNeedFlush| page.size|{}, seconds|{}, flag|{}",
+				page.size(), seconds, flag);
 		return flag;
 	}
 	
@@ -93,7 +95,7 @@ public class ConcurrentWriteTransfer<T> extends AbstractConcurrentWriteTransfer<
 			T data = queue.poll(100, TimeUnit.MICROSECONDS);
 			if(data!=null){
 				page.put(data);
-				logger.info("memoryPage put data|{}, page size|{}",data, page.size());
+				logger.info("queue hashCode|{}, memoryPage put data|{}, page size|{}",queue.hashCode(), data, page.size());
 			}
 		} catch (InterruptedException e) {
 			logger.error("queue poll data error",e);
