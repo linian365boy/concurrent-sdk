@@ -95,10 +95,10 @@ public class ConcurrentWriteTransfer<T> extends AbstractConcurrentWriteTransfer<
 			T data = queue.poll(100, TimeUnit.MICROSECONDS);
 			if(data!=null){
 				page.put(data);
-				logger.info("queue hashCode|{}, memoryPage put data|{}, page size|{}",queue.hashCode(), data, page.size());
+				logger.info("queue hashCode|{}, memoryPage put data|{}, page|{}, size|{}",queue.hashCode(), data, page.hashCode() ,page.size());
 			}
 		} catch (InterruptedException e) {
-			logger.error("queue poll data error",e);
+			logger.error("queue is interrupt.");
 		}
 	}
 

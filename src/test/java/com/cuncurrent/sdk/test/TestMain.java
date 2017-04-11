@@ -24,7 +24,7 @@ public class TestMain extends SkuTemplate {
 			logger.debug("read {} data",i+1);
 		}
 		try {
-			TimeUnit.SECONDS.sleep(7);
+			TimeUnit.SECONDS.sleep(10);
 			this.stop();
 			logger.debug("write end");
 		} catch (InterruptedException e) {
